@@ -21,7 +21,7 @@ if "llm" not in st.session_state:
 		typical_p=0.95,
 		server_kwargs={
 		"headers": {
-			"Authorization": f"Bearer {st.secrets["HF_TOKEN"]}",
+			"Authorization": f"""Bearer {st.secrets["HF_TOKEN"]}""",
 			"Content-Type": "application/json",
 		}
 		}
