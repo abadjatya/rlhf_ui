@@ -11,7 +11,7 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 if "llm" not in st.session_state:
-	inference_server_url = "https://qr4rgilao2whyg-80.proxy.runpod.net/"
+	inference_server_url = st.secrets["inference_url"]
 	llm = HuggingFaceTextGenInference(
 		inference_server_url=inference_server_url,
 		max_new_tokens=60,
@@ -21,7 +21,7 @@ if "llm" not in st.session_state:
 		typical_p=0.95,
 		server_kwargs={
 		"headers": {
-			"Authorization": f"Bearer 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",
+			"Authorization": f"Bearer {st.secrets["HF_TOKEN"]}",
 			"Content-Type": "application/json",
 		}
 		}
