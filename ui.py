@@ -8,6 +8,7 @@ from langchain_community.chat_models.huggingface import ChatHuggingFace
 from langchain.llms import HuggingFaceTextGenInference
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import json
 
 
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
@@ -70,7 +71,7 @@ def start_callback():
 	if len(st.session_state.messages) > 0:
 		message_to_be_saved = st.session_state.messages.copy()
 		message_to_be_saved.insert(0,{"role":"system","content":st.session_state.system_prompt})
-		data = [st.experimental_user.email,str(message_to_be_saved)]
+		data = [st.experimental_user.email,json.dumps(message_to_be_saved)]
 		sh = sheets_connection.open('RLHF_DATA').worksheet('data')
 		sh.append_row(data)
 	
