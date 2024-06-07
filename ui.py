@@ -68,8 +68,8 @@ def start_callback():
 	st.session_state.feedback = True
 
 	if len(st.session_state.messages) > 0:
-		message_to_be_saved = st.session_state.messages
-		message_to_be_saved = message_to_be_saved.append({"role":"system","content":st.session_state.system_prompt})
+		message_to_be_saved = st.session_state.messages.copy()
+		message_to_be_saved = message_to_be_saved.insert(0,{"role":"system","content":st.session_state.system_prompt}
 		data = [st.experimental_user.email,json.dumps(message_to_be_saved)]
 		sh = sheets_connection.open('RLHF_DATA').worksheet('data')
 		sh.append_row(data)
