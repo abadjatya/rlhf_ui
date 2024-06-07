@@ -13,7 +13,7 @@ scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/au
 
 @st.cache_resource
 def create_gclient():
-	creds = ServiceAccountCredentials.from_json_keyfile_name('testingdb-b6d4d-d0a2646c069a.json', scope)
+	creds = ServiceAccountCredentials.from_json_keyfile_name('finetuning-storage-beba143e31e5.json', scope)
 	client = gspread.authorize(creds)
 	return client
 
