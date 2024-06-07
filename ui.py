@@ -8,6 +8,7 @@ from langchain_community.chat_models.huggingface import ChatHuggingFace
 from langchain.llms import HuggingFaceTextGenInference
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import json
 
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 
@@ -67,7 +68,7 @@ def start_callback():
 	st.session_state.feedback = True
 
 	if len(st.session_state.messages) > 0:
-		data = [st.experimental_user.email,str(st.session_state.messages)]
+		data = [st.experimental_user.email,json.dumps(st.session_state.messages)]
 		sh = sheets_connection.open('RLHF_DATA').worksheet('data')
 		sh.append_row(data)
 	
