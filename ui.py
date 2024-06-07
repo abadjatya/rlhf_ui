@@ -67,7 +67,7 @@ def start_callback():
 	st.session_state.feedback = True
 
 	if len(st.session_state.messages) > 0:
-		data = [st.experimental_user.email,st.session_state.messages]
+		data = [st.experimental_user.email,str(st.session_state.messages)]
 		sh = sheets_connection.open('RLHF_DATA').worksheet('data')
 		sh.append_row(data)
 	
