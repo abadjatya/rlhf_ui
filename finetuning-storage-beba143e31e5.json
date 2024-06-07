@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "finetuning-storage",
+  "private_key_id": "beba143e31e57c93f49e10a7550dd4c2025dd664",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCvb+SGHe1LU/Y7\n1AMvsh82o48nV1UD1RdPAExA0ANEglwY44h7LkWViokOxSo9urI0vmGrfO7DkYKE\nslZRCwtAQRcigq5kScsswehh4K5zqWHW+j1Kq5g8k4/ISdWsDriK7NuWy5LuPD7+\nOIEDXDIT5lD8xzzeknSp7GJiuwaRVPN8WZRG2qG9G9EFVK9XGGxbpZLc25TKStV9\nz1eeYhlj1njtQN6mTodGr2+7PArlxE1vD2qYlfCoUAGDiywJbWXwIKDv6scMSilT\nOWubYhmblpWSizIfxrpwaPXeOxFPCZaa0SJGGQrg96xbZwC8NbOFxFbjWgPHi4qb\nFQJzmQ3/AgMBAAECgf8xNHf6QkX4h2VVyAKSnQt1Zi11TxuPMohhOGj9/YprDCT9\naFntb5kk6GbqFPkHDhcJ1IygjoQ4Wfb6WTtONpPnGko8OQE+0md9LEMr0yPVsnFK\nzDYPS6PCns09IM2mluQLDvHte/KPPJN6nYcX6it+832vN29S9ZQYZfFSz/EqKtGt\nxEbsXZUjwqcWjLW7EAYZPDWRSChMP9DVBx8QiKDDcVKdtnutt9nuVE9+UAyOuff+\nuWHBxhXtiYuevSAtbdsCdsw+srL0GtKRWBGR3ZlYpxIcge1ByhDhY/q7ZcY5BDyA\n90UQvHXoTHTGaJQkJucSH+9GqHIhAQD5h2lJadUCgYEA9yXLJ1diJOpjkWKZBvcS\naj43pL10MqdnonKBveBOP+LEIb2hNEXXUFrEDTZKrLxE9PyIrlW2203QZEAYgciK\ncEOHrq4/hnHPzI8kjAd6eXC+6upV7sxRiKPJlhqPNqaNeOLP9qORVceG7ZiMKhjQ\nu2X+UN2ghwzUaRCCZe7aYXUCgYEAtbiNnvcyUbVl/qQTyVTdfENUNu0RRFaxGvwS\nQiylULvf+f5m+SVQvNsIfXBbNzxhJOv+0A0s5QLgy6WHmwRrUSY8w1wOYJqrCeuy\ngkeYwVbooQ6eG49TunYToqxltmCfCeUuQxgx2QFXVxL21glYeb/OjLNVdbxdsWvP\nhCIMbyMCgYBUkTkPkCYEDbPeNoe4S2igtANkOnN9Na0Pd/EPIKaF07la9kEn2tIP\nK8+z2aT5sD5EOfkm9itopRqugwQfvJgqS+Esk3EnNuBs1Xoi9BgjX8HkLiUTXhR0\nFd9PnmzsvVbhS3LvqQ589JYlzLIBYZZi2UaJMxzPuUMhZEXKTU2qVQKBgQCO7qaW\nDqFJm4CqFaxqg5Hil6K5wSX/tqB/NR23Zx5wrhWxsOSVu0ASC8ZVw/Y7MAbI38cB\nJhvV1bmy9HQA/izbG1RX5SR5364Ak59I0b/Y8t7vL2w1CTs2QoGXRjqKhN0TD2yf\n4Xvz0BY+qu/z0k4BFVkFWlkxzgNz9fS3XYCiOQKBgQDqN9JS8ureUyx5orsc2aZP\no2yE+pItSGkTM/Do4lLw6xuRo9Q/6GMv/yLycmOPkyUZJ/r4joBJEDPndzLdPvgk\ndvru2MbK+FlQWyuJf0rrmAZ6YnMMhFt3flpM3dXnMDRpfmFIBHfS+UQp9mIYHnjw\nOc/vkAMjPOsLHVrSj7XSCw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "rlhf-ui@finetuning-storage.iam.gserviceaccount.com",
+  "client_id": "108301545479899261297",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/rlhf-ui%40finetuning-storage.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
