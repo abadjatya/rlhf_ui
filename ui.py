@@ -6,6 +6,18 @@ from langchain.schema import (
 from langchain_core.messages.ai import AIMessageChunk
 from langchain_community.chat_models.huggingface import ChatHuggingFace
 from langchain.llms import HuggingFaceTextGenInference
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
+scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+
+@st.cache_resource
+def create_gclient():
+	creds = ServiceAccountCredentials.from_json_keyfile_name('testingdb-b6d4d-d0a2646c069a.json', scope)
+	client = gspread.authorize(creds)
+	return client
+
+sheets_connection = create_gclient()
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -53,6 +65,12 @@ if "langchain_messages" not in st.session_state:
 def start_callback():
 	st.session_state.curr_response = ""
 	st.session_state.feedback = True
+
+	if len(st.session_state.messages) > 0:
+		data = [st.experimental_user.email,st.session_state.messages]
+		sh = sheets_connection.open('RLHF_DATA').worksheet('data')
+		sh.append_row(data)
+	
 	if len(st.session_state.messages) == 10:
 		st.session_state.messages = []
 		st.session_state.langchain_messages = [SystemMessage(content=st.session_state.system_prompt)]
