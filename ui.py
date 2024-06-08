@@ -129,7 +129,7 @@ if st.session_state.feedback == True and st.session_state.curr_response!="":
 			
 			if len(st.session_state.messages) > 0 and (st.session_state.curr_response != assistant_final_response):
 				message_to_be_saved1 = st.session_state.messages.copy()
-				messages_to_be_saved2 = st.session_state.messages.copy()
+				message_to_be_saved2 = st.session_state.messages.copy()
 				
 				message_to_be_saved1.insert(0,{"role":"system","content":st.session_state.system_prompt})
 				message_to_be_saved2.insert(0,{"role":"system","content":st.session_state.system_prompt})				
