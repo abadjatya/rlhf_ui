@@ -9,6 +9,7 @@ from langchain.llms import HuggingFaceTextGenInference
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import json
+import gc
 
 
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
@@ -46,7 +47,7 @@ if "curr_response" not in st.session_state:
 	st.session_state.curr_response = ""
 
 if "feedback" not in st.session_state:
-	st.session_state.feedback = True
+	st.session_state.feedback = False
 
 if "chat_model" not in st.session_state:
 	st.session_state.chat_model = ChatHuggingFace(llm=st.session_state.llm , model_id="CohereForAI/aya-23-35B")
@@ -65,17 +66,18 @@ if "langchain_messages" not in st.session_state:
 	st.session_state.langchain_messages = [SystemMessage(content=st.session_state.system_prompt)]
 
 def start_callback():
+	gc.collect()
+	if st.session_state.feedback == True:
+		st.error("Finalise the previous response to proceed!!!!")
+	
 	st.session_state.curr_response = ""
 	st.session_state.feedback = True
-
-	if len(st.session_state.messages) > 0:
+	if len(st.session_state.messages) == 10:
 		message_to_be_saved = st.session_state.messages.copy()
 		message_to_be_saved.insert(0,{"role":"system","content":st.session_state.system_prompt})
 		data = [st.experimental_user.email,json.dumps(message_to_be_saved)]
 		sh = sheets_connection.open('RLHF_DATA').worksheet('data')
 		sh.append_row(data)
-	
-	if len(st.session_state.messages) == 10:
 		st.session_state.messages = []
 		st.session_state.langchain_messages = [SystemMessage(content=st.session_state.system_prompt)]
 
@@ -124,6 +126,22 @@ if st.session_state.feedback == True and st.session_state.curr_response!="":
 		submitted = st.form_submit_button("Save the response")
 		if submitted:
 			st.session_state.langchain_messages.append(AIMessageChunk(content=assistant_final_response.strip()))
+			
+			if len(st.session_state.messages) > 0 and (st.session_state.curr_response != assistant_final_response):
+				message_to_be_saved1 = st.session_state.messages.copy()
+				messages_to_be_saved2 = st.session_state.messages.copy()
+				
+				message_to_be_saved1.insert(0,{"role":"system","content":st.session_state.system_prompt})
+				message_to_be_saved2.insert(0,{"role":"system","content":st.session_state.system_prompt})				
+
+				message_to_be_saved1.append({"role":"assistant","content":st.session_state.curr_response.strip()})
+				message_to_be_saved2.append({"role":"assistant","content":assistant_final_response.strip()})
+				
+				data = [st.experimental_user.email,json.dumps(message_to_be_saved1),json.dumps(message_to_be_saved2)]
+				sh = sheets_connection.open('RLHF_DATA').worksheet('dpo')
+				sh.append_row(data)
+				
+			
 			st.session_state.messages.append({"role":"assistant","content":assistant_final_response.strip()})
 			st.session_state.feedback = False
 			st.rerun()
