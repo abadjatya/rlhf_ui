@@ -142,6 +142,7 @@ if st.session_state.feedback == True and st.session_state.curr_response!="":
 			st.session_state.langchain_messages.append(AIMessageChunk(content=assistant_final_response.strip()))
 			st.session_state.messages.append({"role":"assistant","content":assistant_final_response.strip()})
 			st.session_state.feedback = False
+			st.rerun()
 		
 
 
