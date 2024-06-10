@@ -53,15 +53,19 @@ if "chat_model" not in st.session_state:
 	st.session_state.chat_model = ChatHuggingFace(llm=st.session_state.llm , model_id="CohereForAI/aya-23-35B")
 
 if "langchain_messages" not in st.session_state:
-	st.session_state.langchain_messages = [SystemMessage(content=st.session_state.system_prompt)]
+	st.session_state.langchain_messages = []
+
 
 def start_callback():
 	gc.collect()
 	if st.session_state.feedback == True:
 		st.error("Finalise the previous response to proceed!!!!")
+
+	if st.session_state.system_prompt == None or st.session_state.system_prompt == "":
+		st.error("Enter System Prompt To proceed.")
 	
 	st.session_state.curr_response = ""
-	st.session_state.feedback = True
+	st.session_state.feedback = True	
 	if len(st.session_state.messages) == 10:
 		message_to_be_saved = st.session_state.messages.copy()
 		message_to_be_saved.insert(0,{"role":"system","content":st.session_state.system_prompt})
@@ -69,18 +73,14 @@ def start_callback():
 		sh = sheets_connection.open('RLHF_DATA').worksheet('data')
 		sh.append_row(data)
 		st.session_state.messages = []
-		st.session_state.langchain_messages = [SystemMessage(content=st.session_state.system_prompt)]
+		st.session_state.langchain_messages = []
 
-def get_system_prompt():
-	system_prompt = st.session_state.system_prompt
-	return SystemMessage(content=system_prompt)
-
-
+	if len(st.session_state.messages) == 0:
+		st.session_state.langchain_messages.append(SystemMessage(content=st.session_state.system_prompt))
 
 
 with st.sidebar:
 	system_prompt = st.text_area("System Prompt",key="system_prompt")
-
 
 st.title("CHAT PREFERENCE UI")
 
