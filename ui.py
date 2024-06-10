@@ -125,8 +125,6 @@ if st.session_state.feedback == True and st.session_state.curr_response!="":
 		assistant_final_response = st.text_area("Finalise the response",value=st.session_state.curr_response)
 		submitted = st.form_submit_button("Save the response")
 		if submitted:
-			st.session_state.langchain_messages.append(AIMessageChunk(content=assistant_final_response.strip()))
-			
 			if len(st.session_state.messages) > 0 and (st.session_state.curr_response != assistant_final_response):
 				message_to_be_saved1 = st.session_state.messages.copy()
 				message_to_be_saved2 = st.session_state.messages.copy()
@@ -141,10 +139,10 @@ if st.session_state.feedback == True and st.session_state.curr_response!="":
 				sh = sheets_connection.open('RLHF_DATA').worksheet('dpo')
 				sh.append_row(data)
 				
-			
+			st.session_state.langchain_messages.append(AIMessageChunk(content=assistant_final_response.strip()))
 			st.session_state.messages.append({"role":"assistant","content":assistant_final_response.strip()})
 			st.session_state.feedback = False
-			st.rerun()
+		
 
 
 
