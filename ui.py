@@ -29,7 +29,7 @@ if "llm" not in st.session_state:
 	inference_server_url = st.secrets["inference_url"]
 	llm = HuggingFaceTextGenInference(
 		inference_server_url=inference_server_url,
-		max_new_tokens=2000,
+		max_new_tokens=1000,
 		temperature=1.35,
 		repetition_penalty=1.2,
 		top_k=10,
