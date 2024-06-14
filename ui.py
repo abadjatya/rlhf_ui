@@ -60,7 +60,7 @@ def start_callback():
 	gc.collect()
 	if st.session_state.feedback == True:
 		st.error("Finalise the previous response to proceed!!!!")
-		st.stop()
+		st.sleep(10)
 
 	if st.session_state.system_prompt == None or st.session_state.system_prompt == "":
 		st.error("Enter System Prompt To proceed.")
