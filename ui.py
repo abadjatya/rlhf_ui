@@ -97,7 +97,7 @@ with st.sidebar:
 
 st.title("CHAT PREFERENCE UI")
 
-button = st.button("Clear Chat",on_clear=clear_callback)
+button = st.button("Clear Chat",on_click=clear_callback)
 
 
 for message in st.session_state.messages:
