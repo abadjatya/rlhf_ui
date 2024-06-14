@@ -81,10 +81,24 @@ def start_callback():
 		st.session_state.langchain_messages.append(SystemMessage(content=st.session_state.system_prompt))
 
 
+def clear_callback():
+	if len(st.session_state.messages) > 0:
+		message_to_be_saved = st.session_state.messages.copy()
+		message_to_be_saved.insert(0,{"role":"system","content":st.session_state.system_prompt})
+		data = [st.experimental_user.email,json.dumps(message_to_be_saved)]
+		sh = sheets_connection.open('RLHF_DATA').worksheet('data')
+		sh.append_row(data)
+		st.session_state.messages = []
+		st.session_state.langchain_messages = []
+
+
 with st.sidebar:
 	system_prompt = st.text_area("System Prompt",key="system_prompt")
 
 st.title("CHAT PREFERENCE UI")
+
+button = st.button("Clear Chat",on_clear=clear_callback)
+
 
 for message in st.session_state.messages:
 	with st.chat_message(message["role"]):
