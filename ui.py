@@ -90,6 +90,7 @@ def clear_callback():
 		sh.append_row(data)
 		st.session_state.messages = []
 		st.session_state.langchain_messages = []
+		st.session_state.feedback = False
 
 
 with st.sidebar:
