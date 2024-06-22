@@ -50,7 +50,7 @@ if "feedback" not in st.session_state:
 	st.session_state.feedback = False
 
 if "chat_model" not in st.session_state:
-	st.session_state.chat_model = ChatHuggingFace(llm=st.session_state.llm , model_id="CohereForAI/aya-23-35B")
+	st.session_state.chat_model = ChatHuggingFace(llm=st.session_state.llm , model_id="Neohumans-ai/Eli-Hindi-v0.1")
 
 if "langchain_messages" not in st.session_state:
 	st.session_state.langchain_messages = []
